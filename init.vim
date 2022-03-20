@@ -1,7 +1,6 @@
 let g:python3_host_prog = 'C:\Users\Rick\AppData\Local\Programs\Python\Python310\python'
 
 call plug#begin()
-Plug 'kyazdani42/nvim-palenight.lua'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
@@ -10,9 +9,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vimsence/vimsence'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 set nu
+set relativenumber
+
 set hidden
 set incsearch
 set ignorecase
@@ -34,20 +36,29 @@ nnoremap <leader>ev :e C:\Users\Rick\appdata\local\nvim/init.vim<cr>
 
 nnoremap <leader>f :Files<cr>
 
-"remapeando transição 
+" save configs
 nnoremap <leader>s :w<cr>
 nnoremap <leader>sq :wq<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>qq :q!<cr>
+nnoremap <leader>l A<cr><esc>
 
+" popup
+inoremap <expr> <Tab>   pumvisible() ? "\<Down>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
+
+" remapeando transição 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-colorscheme palenight
+
+" theme
+let base16colorspace=256 
+colorscheme base16-default-dark
+
 set termguicolors
-let g:lightline = { 'colorscheme': 'palenight' }
 if (has("nvim")) "Transparent background. Only for nvim
     highlight Normal guibg=NONE ctermbg=NONE
     highlight EndOfBuffer guibg=NONE ctermbg=NONE
@@ -67,6 +78,6 @@ let g:vimsence_small_text = 'NeoVim'
 let g:vimsence_small_image = 'neovim'
 let g:vimsence_editing_details = 'Editing: {}'
 let g:vimsence_editing_state = 'Working on: {}'
-let g:vimsence_file_explorer_text = 'In NERDTree'
+
 let g:vimsence_file_explorer_details = 'Looking for files'
 
